@@ -9,8 +9,8 @@ from narratorx.ocr import get_valid_languages, process_pdf
 class TestOCR(unittest.TestCase):
     def setUp(self):
         # Paths to sample PDF files for Turkish and English tests
-        self.sample_pdf_tr = "tests/sample_tr.pdf"
-        self.sample_pdf_en = "tests/sample_en.pdf"
+        self.sample_pdf_tr = "tests/docs/sample_tr.pdf"
+        self.sample_pdf_en = "tests/docs/sample_en.pdf"
         self.language_tr = "tr"
         self.language_en = "en"
 

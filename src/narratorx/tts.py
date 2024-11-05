@@ -1,12 +1,13 @@
 # narratorx/tts.py
 
-import torch
-from TTS.api import TTS
-import soundfile as sf
 import numpy as np
+import soundfile as sf
+import torch
+from tqdm import tqdm
+from TTS.api import TTS
 from unstructured.chunking.basic import chunk_elements
 from unstructured.documents.elements import NarrativeText
-from tqdm import tqdm
+
 
 def text_to_speech(text, language, output_path, max_characters=290):
     # Validate that text is a string
@@ -37,10 +38,7 @@ def text_to_speech(text, language, output_path, max_characters=290):
 
         # Generate speech for the chunk
         wav = tts_model.tts(
-            text=chunk_text,
-            language=language,
-            speaker="Asya Anara",
-            split_sentences=False
+            text=chunk_text, language=language, speaker="Asya Anara", split_sentences=False
         )
 
         # Append the audio data only if it contains data

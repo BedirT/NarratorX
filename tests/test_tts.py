@@ -1,12 +1,14 @@
 # tests/test_tts.py
 
 import unittest
+from unittest.mock import MagicMock, patch
+
 import numpy as np
-import soundfile as sf
-from unittest.mock import MagicMock, patch, call
-from narratorx.tts import text_to_speech
 from unstructured.chunking.basic import chunk_elements
 from unstructured.documents.elements import NarrativeText
+
+from narratorx.tts import text_to_speech
+
 
 class TestTextToSpeech(unittest.TestCase):
 
@@ -16,7 +18,9 @@ class TestTextToSpeech(unittest.TestCase):
         """Test that text_to_speech generates audio correctly with chunking."""
         # Mock TTS model and audio generation
         mock_tts_instance = MagicMock()
-        mock_tts_instance.to.return_value = mock_tts_instance  # Ensure .to() returns the mock instance
+        mock_tts_instance.to.return_value = (
+            mock_tts_instance  # Ensure .to() returns the mock instance
+        )
         mock_tts_instance.tts.return_value = np.array([0.0, 1.0, -1.0])  # Mock audio waveform
         mock_tts_class.return_value = mock_tts_instance
 
@@ -31,7 +35,9 @@ class TestTextToSpeech(unittest.TestCase):
 
         # Generate expected chunks for comparison
         element = NarrativeText(text)
-        expected_chunks = chunk_elements(elements=[element], max_characters=max_characters, overlap=0)
+        expected_chunks = chunk_elements(
+            elements=[element], max_characters=max_characters, overlap=0
+        )
         expected_chunk_count = len(expected_chunks)
         print(f"Expected number of chunks: {expected_chunk_count}")
 
@@ -41,14 +47,18 @@ class TestTextToSpeech(unittest.TestCase):
         self.assertEqual(
             actual_call_count,
             expected_chunk_count,
-            f"TTS should be called once per chunk. Expected {expected_chunk_count}, got {actual_call_count}."
+            f"TTS should be called once per chunk. Expected {expected_chunk_count}, got {actual_call_count}.",  # noqa: E501
         )
 
         # Verify that each TTS call had the correct text for each chunk
-        for idx, (call_args, chunk) in enumerate(zip(mock_tts_instance.tts.call_args_list, expected_chunks)):
+        for idx, (call_args, chunk) in enumerate(
+            zip(mock_tts_instance.tts.call_args_list, expected_chunks)
+        ):
             print(f"Chunk {idx} text: {chunk.text.strip()}")
             args, kwargs = call_args
-            self.assertEqual(kwargs["text"], chunk.text.strip(), "Each chunk should be processed as text.")
+            self.assertEqual(
+                kwargs["text"], chunk.text.strip(), "Each chunk should be processed as text."
+            )
             self.assertEqual(kwargs["language"], language)
             self.assertEqual(kwargs["speaker"], "Asya Anara")
             self.assertEqual(kwargs["split_sentences"], False)
@@ -56,7 +66,9 @@ class TestTextToSpeech(unittest.TestCase):
         # Check that the concatenated audio data is written to the output path
         mock_sf_write.assert_called_once()
         sf_write_args, sf_write_kwargs = mock_sf_write.call_args
-        self.assertEqual(sf_write_args[0], output_path, "Audio should be written to the specified output path.")
+        self.assertEqual(
+            sf_write_args[0], output_path, "Audio should be written to the specified output path."
+        )
 
     @patch("narratorx.tts.TTS")
     @patch("narratorx.tts.sf.write")
@@ -96,7 +108,9 @@ class TestTextToSpeech(unittest.TestCase):
         """Test that text_to_speech raises an error if no audio data was generated."""
         # Mock the TTS instance
         mock_tts_instance = MagicMock()
-        mock_tts_instance.to.return_value = mock_tts_instance  # Ensure .to() returns the mock instance
+        mock_tts_instance.to.return_value = (
+            mock_tts_instance  # Ensure .to() returns the mock instance
+        )
 
         # Set tts to return an empty numpy array to simulate no audio generation
         mock_tts_instance.tts.return_value = np.array([])  # Empty audio data
@@ -133,20 +147,22 @@ class TestTextToSpeech(unittest.TestCase):
         output_path = "output_single.wav"
 
         # Call the function
-        text_to_speech(text, language, output_path, max_characters=1000) # Large enough to avoid splitting
+        text_to_speech(
+            text, language, output_path, max_characters=1000
+        )  # Large enough to avoid splitting
 
         # Assertions
         mock_tts_instance.tts.assert_called_once_with(
-            text=text,
-            language=language,
-            speaker="Asya Anara",
-            split_sentences=False
+            text=text, language=language, speaker="Asya Anara", split_sentences=False
         )
         mock_sf_write.assert_called_once()
 
         # Verify audio output path
         sf_write_args, sf_write_kwargs = mock_sf_write.call_args
-        self.assertEqual(sf_write_args[0], output_path, "Audio should be written to the specified output path.")
+        self.assertEqual(
+            sf_write_args[0], output_path, "Audio should be written to the specified output path."
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
