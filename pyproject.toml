@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "narratorx"
+version = "0.1.0"
+description = ""
+authors = ["BedirT <bedirtpkn@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+surya-ocr = "^0.6.13"
+streamlit = "^1.39.0"
+tts = "^0.22.0"
+openai = "^1.53.0"
+tqdm = "^4.66.6"
+pydantic = "^2.9.2"
+torch = "^2.5.1"
+click = "^8.1.7"
+soundfile = "^0.12.1"
+pymupdf = "^1.24.13"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
