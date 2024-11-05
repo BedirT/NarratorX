@@ -6,6 +6,11 @@ from surya.model.detection.model import load_model as load_det_model, load_proce
 from surya.model.recognition.model import load_model as load_rec_model
 from surya.model.recognition.processor import load_processor as load_rec_processor
 import pymupdf
+from surya.languages import CODE_TO_LANGUAGE
+from typing import List
+
+def get_valid_languages() -> List[str]:
+    return list(CODE_TO_LANGUAGE.keys())
 
 def process_pdf(pdf_path, language):
     # Load the PDF
