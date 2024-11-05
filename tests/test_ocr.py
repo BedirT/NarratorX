@@ -63,17 +63,17 @@ class TestOCR(unittest.TestCase):
         with self.assertRaises(Exception):
             process_pdf(self.sample_pdf_tr, "invalid_lang_code")
 
-    def test_optional_manual_investigation(self):
-        """Optional: Manually inspect the output to verify OCR results."""
-        result = process_pdf(self.sample_pdf_tr, self.language_tr)
+    # def test_optional_manual_investigation(self):
+    #     """Optional: Manually inspect the output to verify OCR results."""
+    #     result = process_pdf(self.sample_pdf_tr, self.language_tr)
 
-        # Save the output to a file for manual inspection
-        output_file = "tests/narratorx_ocr_test_output.txt"
-        with open(output_file, "w", encoding="utf-8") as f:
-            f.write(result)
+    #     # Save the output to a file for manual inspection
+    #     output_file = "tests/narratorx_ocr_test_output.txt"
+    #     with open(output_file, "w", encoding="utf-8") as f:
+    #         f.write(result)
 
-        print(f"Output saved to '{output_file}' for manual inspection.")
-        print("Please inspect the output to ensure the OCR process is working correctly.")
+    #     print(f"Output saved to '{output_file}' for manual inspection.")
+    #     print("Please inspect the output to ensure the OCR process is working correctly.")
 
     def test_get_valid_languages(self):
         """Test the get_valid_languages function."""
