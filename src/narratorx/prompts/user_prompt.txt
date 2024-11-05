@@ -1,0 +1,7 @@
+Here is the text for proofreading:
+
+{content}
+
+Remember that you are not to change any of the text, you only need to fix the grammar, punctuation, and spelling mistakes.
+
+Please return the fixed text in <fixed_text> tags.

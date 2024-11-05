@@ -1,16 +1,20 @@
 # narratorx/ocr.py
 
+from typing import List
+
+import pymupdf
 from PIL import Image
-from surya.ocr import run_ocr
-from surya.model.detection.model import load_model as load_det_model, load_processor as load_det_processor
+from surya.languages import CODE_TO_LANGUAGE
+from surya.model.detection.model import load_model as load_det_model
+from surya.model.detection.model import load_processor as load_det_processor
 from surya.model.recognition.model import load_model as load_rec_model
 from surya.model.recognition.processor import load_processor as load_rec_processor
-import pymupdf
-from surya.languages import CODE_TO_LANGUAGE
-from typing import List
+from surya.ocr import run_ocr
+
 
 def get_valid_languages() -> List[str]:
     return list(CODE_TO_LANGUAGE.keys())
+
 
 def process_pdf(pdf_path, language):
     # Load the PDF
@@ -27,7 +31,9 @@ def process_pdf(pdf_path, language):
 
     # Run OCR
     langs = [language]
-    predictions = run_ocr(images, [langs]*len(images), det_model, det_processor, rec_model, rec_processor)
+    predictions = run_ocr(
+        images, [langs] * len(images), det_model, det_processor, rec_model, rec_processor
+    )
 
     # Extract text
     pages_text = []
@@ -38,6 +44,6 @@ def process_pdf(pdf_path, language):
         pages_text.append(page_text)
 
     # Combine pages
-    full_text = "\n".join(pages_text)
+    full_text = "\n\n".join(pages_text)
 
     return full_text

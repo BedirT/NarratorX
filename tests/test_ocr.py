@@ -1,7 +1,6 @@
 # tests/test_ocr.py
 
 import os
-import time
 import unittest
 
 from narratorx.ocr import get_valid_languages, process_pdf
