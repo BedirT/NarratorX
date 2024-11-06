@@ -31,9 +31,9 @@
 
 ## Introduction
 
-🎉 Welcome to NarratorX! 🎉 For the longest time, I found myself saying, "Ah shucks, there's no audiobook for this one… guess I'll have to wait or squeeze in some reading when I have free time." If you’re like me and love listening to audiobooks while doing chores 🧹, commuting 🚶, or just relaxing 😌, then NarratorX is for you!
+🎉 Welcome to NarratorX! 🎉 For the longest time, I found myself saying, "Ah shucks, there's no audiobook for this one… guess I'll have to wait or squeeze in some reading when I have free time." If you’re like me and love listening to audiobooks while doing chores 🧹, commuting 🚶, or just relaxing 😌, then I guess this tool was made for you!
 
-📚 Now, with NarratorX, you can freely convert the PDF of that book that’s been lingering on your to-read list into a beautifully narrated, non-robotic audiobook. Say hello to NarratorX – savior of the busy and the lazy! By harnessing advanced OCR 🔍, powerful LLMs 🤖, and state-of-the-art TTS 🎙️, NarratorX transforms your PDFs into immersive audiobooks, ready to accompany you wherever you go. And the best part? It’s all for free! 🆓
+📚 With NarratorX, you can freely convert the PDF of that book that’s been lingering on your to-read list into a beautifully narrated, non-robotic audiobook. Say hello to NarratorX – savior of the busy and the lazy! By harnessing advanced OCR 🔍, powerful LLMs 🤖, and state-of-the-art TTS 🎙️, NarratorX transforms your PDFs into immersive audiobooks, ready to accompany you wherever you go. And all for free, my favorite kinda payment method...
 
 NarratorX is a passion project, specially crafted for my book club 📖💬. With support for 16 languages 🌍, it’s perfect for readers worldwide. I hope it brings you joy too! So go on, read away and listen away! 🎧✨
 
@@ -60,7 +60,7 @@ https://github.com/user-attachments/assets/eeb3157d-8d2f-423f-97dd-da30439c7bf2
 
 
 
-🎧 **Sample Audiobook Conversions**  
+🎧 **Sample Audiobook Conversions**
 Here are some sample audiobook conversions created with NarratorX! (Not cherry-picked – just pure NarratorX magic ✨)
 
 | 🌐 **Language** | 📚 **Book Title** | 🔊 **Sample Audio** |
@@ -108,7 +108,7 @@ Here's what's on the horizon:
   - Add a stopping option.
   - Add step-wise processing - OCR, LLM, TTS.
 
-Help is always welcome! If you have ideas, suggestions, or want to contribute, feel free to reach out.
+I welcome all contributions! If you have ideas, suggestions, or want to contribute, feel free to reach out.
 
 ---
 
@@ -270,7 +270,7 @@ To maintain code quality and consistency, please adhere to the following guideli
           types: [python]
   ```
 
-  You can ignore all others, and just install pre-commit hooks with the command above, and (since i already have the configuration file) you can use `pre-commit run --all-files` to run all checks.
+  You can ignore all others, and just install pre-commit hooks with the command above, and (since I already have the configuration file) you can use `pre-commit run --all-files` to run all checks.
 
 ### Testing
 
