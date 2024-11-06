@@ -110,7 +110,12 @@ class TestFixText(unittest.TestCase):
                 {"role": "assistant", "content": "<fixed_text>"},
             ]
             expected_calls.append(
-                call(model=self.model_name, messages=expected_messages, stop=["</fixed_text>"], max_tokens=4000)
+                call(
+                    model=self.model_name,
+                    messages=expected_messages,
+                    stop=["</fixed_text>"],
+                    max_tokens=4000,
+                )
             )
 
         # Assertions

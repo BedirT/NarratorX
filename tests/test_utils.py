@@ -14,17 +14,13 @@ class TestSplitTextIntoChunks(unittest.TestCase):
     def test_split_text_long(self):
         """Test splitting long text that requires chunking."""
         text = "This is a test sentence. " * 100  # Create a long text
-        chunks = split_text_into_chunks(
-            text, max_chars=self.max_chars, model_name=self.model_name
-        )
+        chunks = split_text_into_chunks(text, max_chars=self.max_chars, model_name=self.model_name)
         self.assertGreater(len(chunks), 1, "Long text should be split into multiple chunks.")
 
     def test_split_text_empty(self):
         """Test handling of empty text."""
         text = ""
-        chunks = split_text_into_chunks(
-            text, max_chars=self.max_chars, model_name=self.model_name
-        )
+        chunks = split_text_into_chunks(text, max_chars=self.max_chars, model_name=self.model_name)
         self.assertEqual(len(chunks), 0, "Empty text should result in zero chunks.")
 
     def test_split_text_none(self):
@@ -36,9 +32,7 @@ class TestSplitTextIntoChunks(unittest.TestCase):
     def test_split_text_special_characters(self):
         """Test handling of text with special characters."""
         text = "This is a sentence with emojis 😊 and symbols ©, ™, ✨."
-        chunks = split_text_into_chunks(
-            text, max_chars=self.max_chars, model_name=self.model_name
-        )
+        chunks = split_text_into_chunks(text, max_chars=self.max_chars, model_name=self.model_name)
         self.assertGreater(
             len(chunks), 0, "Text with special characters should be split into chunks."
         )

@@ -1,19 +1,12 @@
 # narratorx/ocr.py
 
-from typing import List
-
 import pymupdf
 from PIL import Image
-from surya.languages import CODE_TO_LANGUAGE
 from surya.model.detection.model import load_model as load_det_model
 from surya.model.detection.model import load_processor as load_det_processor
 from surya.model.recognition.model import load_model as load_rec_model
 from surya.model.recognition.processor import load_processor as load_rec_processor
 from surya.ocr import run_ocr
-
-
-def get_valid_languages() -> List[str]:
-    return list(CODE_TO_LANGUAGE.keys())
 
 
 def process_pdf(pdf_path, language):

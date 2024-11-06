@@ -1,7 +1,7 @@
 # runner.py
 
-import os
 import click
+
 from narratorx.cli import main
 
 # Set necessary environment variables
@@ -17,6 +17,7 @@ log_file = "narratorx.log"
 max_tokens = 4000
 max_llm_characters = 1000
 max_stt_characters = 290
+
 
 # Simulate running the CLI by directly invoking `main()`
 @click.command()
@@ -38,6 +39,7 @@ def run_cli(ctx):
         log_level=log_level,
         log_file=log_file,
     )
+
 
 # Run the CLI runner
 if __name__ == "__main__":

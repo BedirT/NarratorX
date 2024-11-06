@@ -40,8 +40,12 @@ def llm_process_text(
 
         # Get the text after the fixed_text tag
         if "<fixed_text>" in response_text:
-            response_text = response_text.split("<fixed_text>")[1].strip()
+            new_response_text = response_text.split("<fixed_text>")[1].strip()
+            if not new_response_text:
+                new_response_text = response_text.split("<fixed_text>")[0].strip()
+        else:
+            new_response_text = response_text
 
-        fixed_chunks.append(response_text)
+        fixed_chunks.append(new_response_text)
 
     return "\n\n".join(fixed_chunks)

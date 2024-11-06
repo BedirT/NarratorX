@@ -2,8 +2,34 @@
 
 from typing import List
 
+from surya.languages import CODE_TO_LANGUAGE
 from unstructured.chunking.basic import chunk_elements
 from unstructured.documents.elements import NarrativeText
+
+
+def get_valid_languages() -> List[str]:
+    ocr_langs = list(CODE_TO_LANGUAGE.keys())
+    tts_langs = [
+        # https://docs.coqui.ai/en/latest/models/xtts.html#languages
+        "en",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt",
+        "pl",
+        "tr",
+        "ru",
+        "nl",
+        "cs",
+        "ar",
+        "zh-cn",
+        "ja",
+        "hu",
+        "ko",
+    ]
+    valid_languages = list(set(ocr_langs) & set(tts_langs))
+    return valid_languages
 
 
 def split_text_into_chunks(
