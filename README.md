@@ -18,6 +18,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Demo](#demo)
+- [Supported Languages](#supported-languages-)
 - [Roadmap](#roadmap)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -30,21 +31,23 @@
 
 ## Introduction
 
-Welcome to **NarratorX**! For the longest time I suffered from "Ah shuks there is no audiobook of this one, I guess I will have to wait or read it when I have some free time..." I believe there are people like me who loves to listen to some audiobooks while doing some chores or just walking in the city! Well now we can freely convert the pdf of that book which was on our to-read list forever into a well-crafted non-robotic audiobook and listen as we wish! Say hi to NarratorX, saviour of busy and lazy... By harnessing advanced Optical Character Recognition (OCR), powerful Language Learning Models (LLMs), and state-of-the-art Text-to-Speech (TTS) technology, we convert PDFs into immersive audiobooks, ready to enjoy on the go. And all for **Free**...
+🎉 Welcome to NarratorX! 🎉 For the longest time, I found myself saying, "Ah shucks, there's no audiobook for this one… guess I'll have to wait or squeeze in some reading when I have free time." If you’re like me and love listening to audiobooks while doing chores 🧹, commuting 🚶, or just relaxing 😌, then NarratorX is for you!
 
-NarratorX is a passion project mainly for myself and my book club :). It is especially handy due to its wide language support. I hope it brings joy to you as well. Read away, listen away!
+📚 Now, with NarratorX, you can freely convert the PDF of that book that’s been lingering on your to-read list into a beautifully narrated, non-robotic audiobook. Say hello to NarratorX – savior of the busy and the lazy! By harnessing advanced OCR 🔍, powerful LLMs 🤖, and state-of-the-art TTS 🎙️, NarratorX transforms your PDFs into immersive audiobooks, ready to accompany you wherever you go. And the best part? It’s all for free! 🆓
 
+NarratorX is a passion project, specially crafted for my book club 📖💬. With support for 16 languages 🌍, it’s perfect for readers worldwide. I hope it brings you joy too! So go on, read away and listen away! 🎧✨
 
 ## Features
 
-| Feature                                 | Description |
-|-----------------------------------------|-------------|
-| **Seamless PDF to Audiobook Conversion** | Converts your PDFs into high-quality audiobooks using OCR, LLMs, and TTS technology, fully automating the process from text extraction to speech generation. |
-| **Multi-Language Support**               | Supports 16 languages, including English, Spanish, French, German, Turkish, and more, making it accessible to a global audience. |
-| **Open-Source LLM Integration**          | Leverage the Ollama library for local, open-source LLMs. OpenAI is optional, ensuring flexibility for users with different requirements and resources. |
-| **User-Friendly Interfaces**             | Use either the command-line interface for efficient, scriptable conversions or the Streamlit web app for a visual, interactive experience. |
-| **Customizable Settings**                | Fine-tune your experience by adjusting chunk sizes, choosing models, and selecting language preferences to suit each document. |
-| **Robust Error Handling and Logging**    | With comprehensive error handling and logging, NarratorX ensures smooth operation and easy troubleshooting if issues arise. |
+| 🚀 **Feature**                           | ✨ **Description** |
+|-----------------------------------------|--------------------|
+| **Seamless PDF to Audiobook Conversion** 🎧 | Effortlessly convert your PDFs into high-quality audiobooks using OCR 🔍, LLMs 🤖, and TTS 🎙️, fully automating the process from text extraction to speech generation. |
+| **Multi-Language Support** 🌍             | Supports 16 languages, including English, Spanish, French, German, Turkish, and more, making NarratorX accessible to a global audience. |
+| **Open-Source LLM Integration** 🔓        | Leverage the Ollama library for local, open-source LLMs. OpenAI is optional, offering flexibility for users with different needs. |
+| **User-Friendly Interfaces** 🖥️           | Use either the command-line interface for quick, scriptable conversions or the Streamlit web app for a visual, interactive experience. |
+| **Customizable Settings** 🎛️              | Fine-tune your experience by adjusting chunk sizes, selecting models, and choosing language preferences to suit each document. |
+| **Robust Error Handling and Logging** 🛠️  | With comprehensive error handling and logging, NarratorX ensures smooth operation and easy troubleshooting if issues arise. |
+
 
 ---
 
@@ -56,14 +59,41 @@ https://github.com/user-attachments/assets/eeb3157d-8d2f-423f-97dd-da30439c7bf2
 
 
 
-Here are some sample audiobook conversions (These are not cherry-picked samples) created with NarratorX:
 
-| Language | Book Title | Sample Audio |
-|----------|-------------|--------------|
-| English  | "Little Prince" by Antoine de Saint-Exupéry | [en.webm](https://github.com/user-attachments/assets/59179257-19aa-431f-b7ba-2419a234e3bc) |
-| Spanish  | "Don Quijote" by Miguel de Cervantes | [es.webm](https://github.com/user-attachments/assets/3605936c-2644-4ddf-888f-6128f9adab10) |
-| French   | "Les Misérables" by Victor Hugo | [fr.webm](https://github.com/user-attachments/assets/c5aacc01-333b-4d47-94a3-ab4d53fa83f7) |
-| Turkish  | "Tüfek, Mikrop ve Çelik" by Jared Diamond | [tr.webm](https://github.com/user-attachments/assets/7b0dfcf0-8c16-4f5a-b925-d965d6c3b033) |
+🎧 **Sample Audiobook Conversions**  
+Here are some sample audiobook conversions created with NarratorX! (Not cherry-picked – just pure NarratorX magic ✨)
+
+| 🌐 **Language** | 📚 **Book Title** | 🔊 **Sample Audio** |
+|----------------|--------------------|---------------------|
+| 🇺🇸 **English** | *"The Little Prince"* by Antoine de Saint-Exupéry | [Listen 🎶](https://github.com/user-attachments/assets/59179257-19aa-431f-b7ba-2419a234e3bc) |
+| 🇪🇸 **Spanish** | *"Don Quijote"* by Miguel de Cervantes | [Escuchar 🎶](https://github.com/user-attachments/assets/3605936c-2644-4ddf-888f-6128f9adab10) |
+| 🇫🇷 **French** | *"Les Misérables"* by Victor Hugo | [Écouter 🎶](https://github.com/user-attachments/assets/c5aacc01-333b-4d47-94a3-ab4d53fa83f7) |
+| 🇹🇷 **Turkish** | *"Tüfek, Mikrop ve Çelik"* by Jared Diamond | [Dinle 🎶](https://github.com/user-attachments/assets/7b0dfcf0-8c16-4f5a-b925-d965d6c3b033) |
+
+---
+
+## Supported Languages 🌍
+
+NarratorX supports a wide array of languages, making it accessible for many readers around the world! 🌐 The currently supported languages are:
+
+- 🇺🇸 **English** (en)
+- 🇪🇸 **Spanish** (es)
+- 🇫🇷 **French** (fr)
+- 🇩🇪 **German** (de)
+- 🇮🇹 **Italian** (it)
+- 🇵🇹 **Portuguese** (pt)
+- 🇵🇱 **Polish** (pl)
+- 🇹🇷 **Turkish** (tr)
+- 🇷🇺 **Russian** (ru)
+- 🇳🇱 **Dutch** (nl)
+- 🇨🇿 **Czech** (cs)
+- 🇸🇦 **Arabic** (ar)
+- 🇨🇳 **Chinese** (zh-cn)
+- 🇯🇵 **Japanese** (ja)
+- 🇭🇺 **Hungarian** (hu)
+- 🇰🇷 **Korean** (ko)
+
+With NarratorX, the world of audiobooks is just a language selection away! 🌎📖🎶
 
 ## Roadmap
 
