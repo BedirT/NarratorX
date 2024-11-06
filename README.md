@@ -1,2 +1,302 @@
-# NarratorX
-A simple to use AI tool for creating AudioBooks/PDFNarrations
+<div style="text-align: center;">
+    <h1>NarratorX</h1>
+    <img src="img/logo.png" alt="NarratorX Logo" />
+    <p><em>Transform your PDFs into engaging audiobooks using cutting-edge OCR, powerful language models, and expressive TTS technology in 16 languages.</em></p>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License" /></a>
+    <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8%2B-blue" alt="Python Version" /></a>
+</div>
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Demo](#demo)
+- [Roadmap](#roadmap)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Command-Line Interface](#command-line-interface)
+  - [Streamlit Web Application](#streamlit-web-application)
+- [Contributing](#contributing)
+  - [Style Guidelines](#style-guidelines)
+  - [Testing](#testing)
+- [License](#license)
+
+## Introduction
+
+Welcome to **NarratorX**! For the longest time I suffered from "Ah shuks there is no audiobook of this one, I guess I will have to wait or read it when I have some free time..." I believe there are people like me who loves to listen to some audiobooks while doing some chores or just walking in the city! Well now we can freely convert the pdf of that book which was on our to-read list forever into a well-crafted non-robotic audiobook and listen as we wish! Say hi to NarratorX, saviour of busy and lazy... By harnessing advanced Optical Character Recognition (OCR), powerful Language Learning Models (LLMs), and state-of-the-art Text-to-Speech (TTS) technology, we convert PDFs into immersive audiobooks, ready to enjoy on the go. And all for **Free**...
+
+NarratorX is a passion project mainly for myself and my book club :). It is especially handy due to its wide language support. I hope it brings joy to you as well. Read away, listen away!
+
+
+## Features
+
+<div style="display: table; width: 100%; padding: 0; margin: 0;"> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Seamless PDF to Audiobook Conversion</b> </div> <div style="display: table-cell; padding: 10px;"> Converts your PDFs into high-quality audiobooks using OCR, LLMs, and TTS technology, fully automating the process from text extraction to speech generation. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Multi-Language Support</b> </div> <div style="display: table-cell; padding: 10px;"> Supports 16 languages, including English, Spanish, French, German, Turkish, and more, making it accessible to a global audience. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Open-Source LLM Integration</b> </div> <div style="display: table-cell; padding: 10px;"> Leverage the Ollama library for local, open-source LLMs. OpenAI is optional, ensuring flexibility for users with different requirements and resources. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>User-Friendly Interfaces</b> </div> <div style="display: table-cell; padding: 10px;"> Use either the command-line interface for efficient, scriptable conversions or the Streamlit web app for a visual, interactive experience. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Customizable Settings</b> </div> <div style="display: table-cell; padding: 10px;"> Fine-tune your experience by adjusting chunk sizes, choosing models, and selecting language preferences to suit each document. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Robust Error Handling and Logging</b> </div> <div style="display: table-cell; padding: 10px;"> With comprehensive error handling and logging, NarratorX ensures smooth operation and easy troubleshooting if issues arise. </div> </div> </div>
+
+---
+
+## Demo GIF
+
+![NarratorX Demo](img/demo_screenshot.gif)
+
+## Roadmap
+
+Here's what's on the horizon:
+
+- [ ] **Enhanced LLM Options**: Integration with additional open-source LLMs and libraries.
+- [ ] **Custom TTS Voices**: Support for custom TTS voices and accents.
+- [ ] **Enhanced Chunking and OCR**: I am planning to move to [open-parse](https://github.com/Filimoa/open-parse) for better OCR results.
+
+Help is always welcome! If you have ideas, suggestions, or want to contribute, feel free to reach out.
+
+---
+
+## Installation
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Python 3.8 or higher**: [Download Python](https://www.python.org/downloads/)
+- **Poetry**: A tool for dependency management.
+  ```bash
+  pip install poetry
+  ```
+- **CUDA (Optional)**: For GPU acceleration with CUDA-compatible GPUs. This can significantly speed up processing times.
+
+### Steps
+
+1. **Clone the Repository**
+
+   Start by cloning the NarratorX repository to your local machine:
+
+   ```bash
+   git clone https://github.com/bedirt/narratorx.git
+   cd narratorx
+   ```
+
+2. **Install Dependencies**
+
+   Use Poetry to install all required dependencies:
+
+   ```bash
+   poetry install
+   ```
+
+3. **Set Up Environment Variables**
+
+   NarratorX can work with both OpenAI's GPT models and local open-source LLMs via the Ollama library.
+
+   - **If you want to use OpenAI Models**:
+
+     Obtain your OpenAI API key and set it as an environment variable:
+
+     ```bash
+     export OPENAI_API_KEY='your-openai-api-key'
+     ```
+
+4. **(Optional - Just for Contributing) Install Pre-commit Hooks**
+
+   If you plan to contribute to NarratorX, set up pre-commit hooks to maintain code quality:
+
+   ```bash
+   pre-commit install
+   ```
+
+---
+
+## Usage
+
+I implemented two ways to use NarratorX. You can Choose between the command-line interface for quick operations or the Streamlit web app for a more interactive experience.
+
+### Command-Line Interface
+
+Convert your PDF to an audiobook directly from the terminal:
+
+```bash
+narratorx path/to/yourfile.pdf --output output.wav --language en --model gpt-4o --log-level INFO
+```
+
+**Parameters Explained:**
+
+- `path/to/yourfile.pdf`: The path to the PDF you wish to convert.
+- `--output, -o`: (Optional) The path where the output audio file will be saved. Defaults to `output.wav`.
+- `--language, -l`: (Optional) The language code of your PDF content (e.g., `en` for English, `tr` for Turkish).
+- `--model, -m`: (Optional) The LLM model to use. Options include `gpt-4o`, `gpt-4o-mini`, or any model supported by the Ollama library like `llama3.1`. You can see ollama models [here](https://ollama.com/library). Do not forget to use `ollama/` prefix for ollama models.
+- `--max-characters-llm`: (Optional) Maximum characters per LLM chunk. Adjust based on model capabilities. 2-4k is a good starting point.
+- `--max-tokens`: (Optional) Maximum tokens per LLM call. Adjust based on model capabilities. 2-4k is a good starting point again.
+- `--max-characters-tts`: (Optional) Maximum characters per TTS chunk. I do not recommend changing this, use the default 250 characters, this is the limit for "en" language in coqui/TTS model we use.
+- `--log-level`: (Optional) Set the logging level (`DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`).
+
+**Example:**
+
+Using an open-source LLM with Ollama:
+
+```bash
+narratorx path/to/yourfile.pdf --output output.wav --language en --model ollama/llama3.1 --log-level INFO
+```
+
+### Streamlit Web Application
+
+For a more user-friendly interface, use the Streamlit app:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+Open your web browser and navigate to `http://localhost:8501`. Here, you can:
+
+- Upload your PDF file (up to 200MB).
+- Select the language and preferred LLM model.
+- Adjust advanced settings such as chunk sizes (optional).
+- Monitor the progress of each processing step.
+- Listen to a preview and download the final audiobook.
+
+---
+
+## Contributing
+
+Love contributions! Whether it's bug fixes, new features, or documentation improvements, your help is invaluable, and I appreciate it.
+
+### Style Guidelines
+
+To maintain code quality and consistency, please adhere to the following guidelines:
+
+- **Code Formatting**: Use `black` for code formatting with a line length of 100 characters. This ensures that all code follows a consistent style.
+
+  ```bash
+  black --line-length 100 .
+  ```
+
+- **Import Sorting**: Use `isort` with the `black` profile to sort imports correctly.
+
+  ```bash
+  isort --profile black .
+  ```
+
+- **Linting**: Use `flake8` to lint your code and catch potential issues.
+
+  ```bash
+  flake8
+  ```
+
+- **Pre-commit Hooks**: We have pre-commit hooks set up to automate these checks before each commit. Install them with:
+
+  ```bash
+  pre-commit install
+  ```
+
+  **Pre-commit Configuration:**
+
+  ```yaml
+  repos:
+    - repo: local
+      hooks:
+        - id: black
+          name: black
+          entry: poetry run black --line-length 100 --exclude '.venv/*'
+          language: system
+          types: [python]
+        - id: flake8
+          name: flake8
+          entry: poetry run flake8 --exclude .venv --config .flake8
+          language: system
+          types: [python]
+        - id: isort
+          name: isort
+          entry: poetry run isort --profile black --skip .venv
+          language: system
+          types: [python]
+  ```
+
+  You can ignore all others, and just install pre-commit hooks with the command above, and (since i already have the configuration file) you can use `pre-commit run --all-files` to run all checks.
+
+### Testing
+
+Ensure your changes don't break existing functionality by running tests:
+1. **Install Test Dependencies**
+
+    ```bash
+    poetry install --with dev
+    ```
+
+2. **Run Tests**
+
+    ```bash
+    python -m unittest discover tests/
+    ```
+
+3. **Test Specific Modules**
+
+    ```bash
+    python -m unittest tests/test_llm.py
+    ```
+
+### How to Contribute
+
+1. **Fork the Repository**
+
+   Click the "Fork" button at the top right corner of the repository page.
+
+2. **Clone Your Fork**
+
+   ```bash
+   git clone https://github.com/yourusername/narratorx.git
+   cd narratorx
+   ```
+
+3. **Create a New Branch**
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+4. **Make Your Changes**
+
+   Write code, fix bugs, or improve documentation.
+
+5. **Format and Lint Your Code**
+
+   ```bash
+   black --line-length 100 .
+   isort --profile black .
+   flake8
+   ```
+
+   or simply:
+
+   ```bash
+   pre-commit run --all-files
+   ```
+
+6. **Commit Your Changes**
+
+   ```bash
+   git add .
+   git commit -m "Add your descriptive commit message here"
+   ```
+
+7. **Push to Your Fork**
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+8. **Open a Pull Request**
+
+   Go to the original repository and open a pull request. Provide a clear description of your changes.
+
+---
+
+## License
+
+NarratorX is licensed under the **GNU General Public License v3.0**. By contributing to this project, you agree that your contributions will be licensed under its GPLv3.
+
+See the [LICENSE](LICENSE) file for more details.
+
+---
+
+Thank you for using NarratorX! I am excited to see how you transform your reading experience. If you have any questions, suggestions, or need assistance, feel free to open an issue or reach out.
+
+You can add me on goodreads [here](https://www.goodreads.com/bedirt).
+
+Happy listening! 🎧📖
