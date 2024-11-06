@@ -50,16 +50,20 @@ NarratorX is a passion project mainly for myself and my book club :). It is espe
 
 ## Demo
 
-![NarratorX Demo](img/demo_screenshot.gif)
+
+
+https://github.com/user-attachments/assets/eeb3157d-8d2f-423f-97dd-da30439c7bf2
+
+
 
 Here are some sample audiobook conversions (These are not cherry-picked samples) created with NarratorX:
 
 | Language | Book Title | Sample Audio |
 |----------|-------------|--------------|
-| English  | "Little Prince" by Antoine de Saint-Exupéry |  |
-| Spanish  | "Don Quijote" by Miguel de Cervantes |  |
-| French   | "Les Misérables" by Victor Hugo |  |
-| Turkish  | "Tüfek, Mikrop ve Çelik" by Jared Diamond |  |
+| English  | "Little Prince" by Antoine de Saint-Exupéry | [en.webm](https://github.com/user-attachments/assets/59179257-19aa-431f-b7ba-2419a234e3bc) |
+| Spanish  | "Don Quijote" by Miguel de Cervantes | [es.webm](https://github.com/user-attachments/assets/3605936c-2644-4ddf-888f-6128f9adab10) |
+| French   | "Les Misérables" by Victor Hugo | [fr.webm](https://github.com/user-attachments/assets/c5aacc01-333b-4d47-94a3-ab4d53fa83f7) |
+| Turkish  | "Tüfek, Mikrop ve Çelik" by Jared Diamond | [tr.webm](https://github.com/user-attachments/assets/7b0dfcf0-8c16-4f5a-b925-d965d6c3b033) |
 
 ## Roadmap
 
