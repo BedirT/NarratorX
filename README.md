@@ -1,6 +1,6 @@
 <div style="text-align: center;">
     <h1>NarratorX</h1>
-    <img src="img/logo.png" alt="NarratorX Logo" />
+    <img src="img/banner.png" alt="NarratorX Banner" />
     <p><em>Transform your PDFs into engaging audiobooks using cutting-edge OCR, powerful language models, and expressive TTS technology in 16 languages.</em></p>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License" /></a>
     <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8%2B-blue" alt="Python Version" /></a>
@@ -38,6 +38,17 @@ NarratorX is a passion project mainly for myself and my book club :). It is espe
 
 ![NarratorX Demo](img/demo_screenshot.gif)
 
+## Sample Audiobooks
+
+Here are some sample audiobook conversions (These are not cherry picked samples) created with NarratorX:
+
+| Language | Book Title | Sample Audio |
+|----------|-------------|--------------|
+| English  | "Little Prince" by Antoine de Saint-Exupéry |  |
+| Spanish  | "Don Quijote" by Miguel de Cervantes |  |
+| French   | "Les Misérables" by Victor Hugo |  |
+| Turkish  | "Tüfek, Mikrop ve Çelik" by Jared Diamond |  |
+
 ## Roadmap
 
 Here's what's on the horizon:
@@ -45,6 +56,11 @@ Here's what's on the horizon:
 - [ ] **Enhanced LLM Options**: Integration with additional open-source LLMs and libraries.
 - [ ] **Custom TTS Voices**: Support for custom TTS voices and accents.
 - [ ] **Enhanced Chunking and OCR**: I am planning to move to [open-parse](https://github.com/Filimoa/open-parse) for better OCR results.
+- [ ] **Support for additional file formats**: EPUB, DOCX, Image, and plain text support.
+- [ ] **Automated Chunk Size Optimization**: Automatically adjust chunk sizes based on model capabilities and language requirements.
+- [ ] **Improved UI/UX**: Enhancements to the Streamlit app for a more intuitive user experience.
+  - Add a stopping option.
+  - Add step-wise processing - OCR, LLM, TTS.
 
 Help is always welcome! If you have ideas, suggestions, or want to contribute, feel free to reach out.
 
@@ -124,7 +140,7 @@ narratorx path/to/yourfile.pdf --output output.wav --language en --model gpt-4o 
 - `--model, -m`: (Optional) The LLM model to use. Options include `gpt-4o`, `gpt-4o-mini`, or any model supported by the Ollama library like `llama3.1`. You can see ollama models [here](https://ollama.com/library). Do not forget to use `ollama/` prefix for ollama models.
 - `--max-characters-llm`: (Optional) Maximum characters per LLM chunk. Adjust based on model capabilities. 2-4k is a good starting point.
 - `--max-tokens`: (Optional) Maximum tokens per LLM call. Adjust based on model capabilities. 2-4k is a good starting point again.
-- `--max-characters-tts`: (Optional) Maximum characters per TTS chunk. I do not recommend changing this, use the default 250 characters, this is the limit for "en" language in coqui/TTS model we use.
+- `--max-characters-tts`: (Optional) Maximum characters per TTS chunk. This value should be changed based on the language you are using, if you get a warning `Warning: The text length exceeds the character limit of 239 for language 'es', this might cause truncated audio.` you should decrese this value to be the same as the warning message. (I will automate this soon, lazy at the moment :))
 - `--log-level`: (Optional) Set the logging level (`DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`).
 
 **Example:**
@@ -295,6 +311,18 @@ See the [LICENSE](LICENSE) file for more details.
 
 ---
 
+## Acknowledgements
+
+I made use of the following libraries and tools to build NarratorX and am grateful for all their contributions:
+- [OpenAI](https://openai.com)
+- [Ollama](https://ollama.com)
+- [Coqui/TTS](https://github.com/coqui-ai/TTS)
+- [Streamlit](https://streamlit.io)
+- [Surya-OCR](https://github.com/VikParuchuri/surya)
+- [Unstructured](https://github.com/Unstructured-IO/unstructured)
+- [LiteLLM](https://github.com/BerriAI/litellm)
+
+---
 Thank you for using NarratorX! I am excited to see how you transform your reading experience. If you have any questions, suggestions, or need assistance, feel free to open an issue or reach out.
 
 You can add me on goodreads [here](https://www.goodreads.com/bedirt).
