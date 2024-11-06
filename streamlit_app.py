@@ -45,21 +45,21 @@ with st.expander("Advanced Settings"):
         "Maximum characters per LLM chunk",
         min_value=100,
         max_value=10000,
-        value=1000,
+        value=3000,
         step=100,
     )
     max_tokens = st.number_input(
         "Maximum tokens per LLM call",
         min_value=100,
         max_value=8000,
-        value=4000,
+        value=3000,
         step=100,
     )
     max_characters_tts = st.number_input(
         "Maximum characters per TTS chunk",
         min_value=100,
         max_value=1000,
-        value=250,
+        value=235,
         step=50,
     )
 
