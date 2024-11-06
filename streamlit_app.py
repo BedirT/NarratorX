@@ -16,9 +16,12 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# st.image("img/logo.png")
-st.title("NarratorX - PDF to Audiobook Converter")
-st.write("Convert your PDFs into audiobooks using OCR, LLMs, and TTS technologies.")
+st.image("img/banner.png", use_column_width=True)
+st.markdown(
+    "<h5 style='text-align: center;'>Convert your PDFs into audiobooks using OCR, LLMs, and TTS technologies.</h5>",
+    unsafe_allow_html=True,
+)
+st.markdown("---")
 
 # File uploader
 uploaded_file = st.file_uploader("Choose a PDF file to upload", type=["pdf"], accept_multiple_files=False)
