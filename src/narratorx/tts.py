@@ -42,7 +42,7 @@ def text_to_speech(text, language, output_path, max_characters=290):
         )
 
         # Append the audio data only if it contains data
-        if wav.size > 0:
+        if len(wav) > 0:
             audio_data.append(wav)
 
     # Check if audio_data has content before concatenating

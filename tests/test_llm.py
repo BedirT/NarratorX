@@ -7,7 +7,7 @@ from narratorx.llm import llm_process_text
 from narratorx.utils import split_text_into_chunks
 
 
-class TestFixTextOpenAI(unittest.TestCase):
+class TestFixText(unittest.TestCase):
 
     def setUp(self):
         self.text = "This is a test sentence. " * 50  # Create a long text
@@ -34,7 +34,7 @@ class TestFixTextOpenAI(unittest.TestCase):
         result = llm_process_text(self.text, self.language, model_name=self.model_name)
 
         # Calculate expected result
-        chunks = split_text_into_chunks(self.text, max_tokens=4000, model_name=self.model_name)
+        chunks = split_text_into_chunks(self.text, max_chars=4000, model_name=self.model_name)
         expected_result = "\n".join([mock_response_content for _ in chunks])
 
         # Assertions
@@ -100,7 +100,7 @@ class TestFixTextOpenAI(unittest.TestCase):
         llm_process_text(self.text, self.language, model_name=self.model_name)
 
         # Prepare expected calls
-        chunks = split_text_into_chunks(self.text, max_tokens=4000, model_name=self.model_name)
+        chunks = split_text_into_chunks(self.text, max_chars=4000, model_name=self.model_name)
         expected_calls = []
         for chunk in chunks:
             user_prompt = self.user_prompt_template.format(content=chunk)
@@ -110,7 +110,7 @@ class TestFixTextOpenAI(unittest.TestCase):
                 {"role": "assistant", "content": "<fixed_text>"},
             ]
             expected_calls.append(
-                call(model=self.model_name, messages=expected_messages, stop=["</fixed_text>"])
+                call(model=self.model_name, messages=expected_messages, stop=["</fixed_text>"], max_tokens=4000)
             )
 
         # Assertions
@@ -124,7 +124,7 @@ class TestFixTextOpenAI(unittest.TestCase):
         """Test that llm_process_text correctly concatenates multiple fixed chunks."""
 
         # Mock the completion function to return different outputs for each call
-        def mock_completion_side_effect(model, messages, stop):
+        def mock_completion_side_effect(model, messages, stop, max_tokens):
             content = messages[1]["content"]
             fixed_content = content.replace("<fixed_text>", "").replace("</fixed_text>", "").upper()
             return {"choices": [{"message": {"content": fixed_content}}]}
@@ -143,7 +143,7 @@ class TestFixTextOpenAI(unittest.TestCase):
                 .replace("</fixed_text>", "")
                 .upper()
                 for chunk in split_text_into_chunks(
-                    self.text, max_tokens=4000, model_name=self.model_name
+                    self.text, max_chars=4000, model_name=self.model_name
                 )
             ]
         )
