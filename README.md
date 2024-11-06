@@ -1,10 +1,17 @@
-<div style="text-align: center;">
-    <h1>NarratorX</h1>
+
+<p align="center">
     <img src="img/banner.png" alt="NarratorX Banner" />
-    <p><em>Transform your PDFs into engaging audiobooks using cutting-edge OCR, powerful language models, and expressive TTS technology in 16 languages.</em></p>
+</p>
+
+<p align="center">
+    <em>Transform your PDFs into engaging audiobooks with the power of OCR, LLMs, and TTS in 16 languages.</em>
+</p>
+
+<p align="center">
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License" /></a>
     <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8%2B-blue" alt="Python Version" /></a>
-</div>
+</p>
+
 
 ## Table of Contents
 
@@ -30,17 +37,22 @@ NarratorX is a passion project mainly for myself and my book club :). It is espe
 
 ## Features
 
-<div style="display: table; width: 100%; padding: 0; margin: 0;"> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Seamless PDF to Audiobook Conversion</b> </div> <div style="display: table-cell; padding: 10px;"> Converts your PDFs into high-quality audiobooks using OCR, LLMs, and TTS technology, fully automating the process from text extraction to speech generation. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Multi-Language Support</b> </div> <div style="display: table-cell; padding: 10px;"> Supports 16 languages, including English, Spanish, French, German, Turkish, and more, making it accessible to a global audience. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Open-Source LLM Integration</b> </div> <div style="display: table-cell; padding: 10px;"> Leverage the Ollama library for local, open-source LLMs. OpenAI is optional, ensuring flexibility for users with different requirements and resources. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>User-Friendly Interfaces</b> </div> <div style="display: table-cell; padding: 10px;"> Use either the command-line interface for efficient, scriptable conversions or the Streamlit web app for a visual, interactive experience. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Customizable Settings</b> </div> <div style="display: table-cell; padding: 10px;"> Fine-tune your experience by adjusting chunk sizes, choosing models, and selecting language preferences to suit each document. </div> </div> <div style="display: table-row;"> <div style="display: table-cell; padding: 10px; vertical-align: top;"> <b>Robust Error Handling and Logging</b> </div> <div style="display: table-cell; padding: 10px;"> With comprehensive error handling and logging, NarratorX ensures smooth operation and easy troubleshooting if issues arise. </div> </div> </div>
+| Feature                                 | Description |
+|-----------------------------------------|-------------|
+| **Seamless PDF to Audiobook Conversion** | Converts your PDFs into high-quality audiobooks using OCR, LLMs, and TTS technology, fully automating the process from text extraction to speech generation. |
+| **Multi-Language Support**               | Supports 16 languages, including English, Spanish, French, German, Turkish, and more, making it accessible to a global audience. |
+| **Open-Source LLM Integration**          | Leverage the Ollama library for local, open-source LLMs. OpenAI is optional, ensuring flexibility for users with different requirements and resources. |
+| **User-Friendly Interfaces**             | Use either the command-line interface for efficient, scriptable conversions or the Streamlit web app for a visual, interactive experience. |
+| **Customizable Settings**                | Fine-tune your experience by adjusting chunk sizes, choosing models, and selecting language preferences to suit each document. |
+| **Robust Error Handling and Logging**    | With comprehensive error handling and logging, NarratorX ensures smooth operation and easy troubleshooting if issues arise. |
 
 ---
 
-## Demo GIF
+## Demo
 
 ![NarratorX Demo](img/demo_screenshot.gif)
 
-## Sample Audiobooks
-
-Here are some sample audiobook conversions (These are not cherry picked samples) created with NarratorX:
+Here are some sample audiobook conversions (These are not cherry-picked samples) created with NarratorX:
 
 | Language | Book Title | Sample Audio |
 |----------|-------------|--------------|
@@ -122,7 +134,7 @@ Before you begin, ensure you have the following installed:
 
 ## Usage
 
-I implemented two ways to use NarratorX. You can Choose between the command-line interface for quick operations or the Streamlit web app for a more interactive experience.
+I implemented two ways to use NarratorX. You can choose between the command-line interface for quick operations or the Streamlit web app for a more interactive experience.
 
 ### Command-Line Interface
 
