@@ -1,10 +1,11 @@
-import streamlit as st
 import os
 import tempfile
 
-from narratorx.ocr import process_pdf
+import streamlit as st
+
 from narratorx.llm import llm_process_text
-from narratorx.tts import text_to_speech, load_tts_model
+from narratorx.ocr import process_pdf
+from narratorx.tts import load_tts_model, text_to_speech
 from narratorx.utils import get_valid_languages
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -18,13 +19,15 @@ st.set_page_config(
 
 st.image("img/banner.png", use_column_width=True)
 st.markdown(
-    "<h5 style='text-align: center;'>Convert your PDFs into audiobooks using OCR, LLMs, and TTS technologies.</h5>",
+    "<h5 style='text-align: center;'>Convert your PDFs into audiobooks using OCR, LLMs, and TTS technologies.</h5>",  # noqa E501
     unsafe_allow_html=True,
 )
 st.markdown("---")
 
 # File uploader
-uploaded_file = st.file_uploader("Choose a PDF file to upload", type=["pdf"], accept_multiple_files=False)
+uploaded_file = st.file_uploader(
+    "Choose a PDF file to upload", type=["pdf"], accept_multiple_files=False
+)
 
 # Check file size
 MAX_FILE_SIZE_MB = 20
@@ -34,7 +37,9 @@ if uploaded_file is not None and uploaded_file.size > MAX_FILE_SIZE_MB * 1024 * 
 
 # Language selection
 valid_languages = get_valid_languages()
-language = st.selectbox("Select Language", options=valid_languages, index=valid_languages.index("en"))
+language = st.selectbox(
+    "Select Language", options=valid_languages, index=valid_languages.index("en")
+)
 
 # Model selection
 model_options = ["gpt-4o-mini", "llama3.1", "gpt-4o"]
