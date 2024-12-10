@@ -1,12 +1,12 @@
 # narratorx/llm.py
 
-from litellm import completion
+import json
+
 import litellm
+from litellm import completion
+from pydantic import BaseModel
 
 from narratorx.utils import split_text_into_chunks
-from pydantic import BaseModel, Field
-
-import json
 
 
 class FixedTextResponse(BaseModel):
@@ -36,7 +36,9 @@ def llm_process_text(
 
     # Process each chunk individually
     for chunk in chunks:
-        user_prompt = user_prompt_template.format(content=chunk, do_pages_have_page_numbers=True, do_pages_have_headers_or_footers=True)
+        user_prompt = user_prompt_template.format(
+            content=chunk, do_pages_have_page_numbers=True, do_pages_have_headers_or_footers=True
+        )
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},

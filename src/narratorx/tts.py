@@ -1,38 +1,38 @@
+import json
+import os
+from typing import List
+
+import nltk
 import numpy as np
 import soundfile as sf
 import streamlit as st
 import torch
-from tqdm import tqdm
-import os
-from TTS.api import TTS
-import nltk
+from litellm import completion
 from nltk.tokenize import sent_tokenize
 from pydantic import BaseModel
-from litellm import completion
-from typing import List
-import json
+from tqdm import tqdm
+from TTS.api import TTS
 
-
-nltk.download('punkt_tab')
+nltk.download("punkt_tab")
 
 # Define language-specific breakpoints
 language_breakpoints = {
-    'en': [' and ', ' but ', ' or '],
-    'es': [' y ', ' pero ', ' o '],
-    'fr': [' et ', ' mais ', ' ou '],
-    'de': [' und ', ' aber ', ' oder '],
-    'it': [' e ', ' ma ', ' o '],
-    'pt': [' e ', ' mas ', ' ou '], # Portuguese
-    'pl': [' i ', ' ale ', ' lub '], # Polish
-    'tr': [' ve ', ' ama ', ' veya '], # Turkish
-    'ru': [' и ', ' но ', ' или '], # Russian
-    'nl': [' en ', ' maar ', ' of '], # Dutch
-    'cz': [' a ', ' ale ', ' nebo '], # Czech
-    'ar': [' و ', ' لكن ', ' أو '], # Arabic
-    'cn': [' 和 ', ' 但是 ', ' 或者 '], # Chinese
-    'jp': [' そして ', ' しかし ', ' または '], # Japanese
-    'hu': [' és ', ' de ', ' vagy '], # Hungarian
-    'kr': [' 그리고 ', ' 그러나 ', ' 또는 '], # Korean
+    "en": [" and ", " but ", " or "],
+    "es": [" y ", " pero ", " o "],
+    "fr": [" et ", " mais ", " ou "],
+    "de": [" und ", " aber ", " oder "],
+    "it": [" e ", " ma ", " o "],
+    "pt": [" e ", " mas ", " ou "],  # Portuguese
+    "pl": [" i ", " ale ", " lub "],  # Polish
+    "tr": [" ve ", " ama ", " veya "],  # Turkish
+    "ru": [" и ", " но ", " или "],  # Russian
+    "nl": [" en ", " maar ", " of "],  # Dutch
+    "cz": [" a ", " ale ", " nebo "],  # Czech
+    "ar": [" و ", " لكن ", " أو "],  # Arabic
+    "cn": [" 和 ", " 但是 ", " 或者 "],  # Chinese
+    "jp": [" そして ", " しかし ", " または "],  # Japanese
+    "hu": [" és ", " de ", " vagy "],  # Hungarian
+    "kr": [" 그리고 ", " 그러나 ", " 또는 "],  # Korean
 }
 
 with open("src/narratorx/prompts/splitter_user_prompt.txt", "r", encoding="utf-8") as f:
@@ -41,29 +41,30 @@ with open("src/narratorx/prompts/splitter_system_prompt.txt", "r", encoding="utf
     system_prompt_template = f.read()
 
 convert_language_code = {
-    'en': 'english',
-    'es': 'spanish',
-    'fr': 'french',
-    'de': 'german',
-    'it': 'italian',
-    'pt': 'portuguese',
-    'pl': 'polish',
-    'tr': 'turkish',
-    'ru': 'russian',
-    'nl': 'dutch',
-    'cz': 'czech',
-
-    'ar': 'english', # there is no arabic in nltk
-    'cn': 'english', # there is no chinese in nltk
-    'jp': 'english', # there is no japanese in nltk
-    'hu': 'english', # there is no hungarian in nltk
-    'kr': 'english', # there is no korean in nltk
+    "en": "english",
+    "es": "spanish",
+    "fr": "french",
+    "de": "german",
+    "it": "italian",
+    "pt": "portuguese",
+    "pl": "polish",
+    "tr": "turkish",
+    "ru": "russian",
+    "nl": "dutch",
+    "cz": "czech",
+    "ar": "english",  # there is no arabic in nltk
+    "cn": "english",  # there is no chinese in nltk
+    "jp": "english",  # there is no japanese in nltk
+    "hu": "english",  # there is no hungarian in nltk
+    "kr": "english",  # there is no korean in nltk
 }
+
 
 class LLMChunkSplitter(BaseModel):
     chunks: List[str]
 
-def split_with_llm(model_name, text, max_chars, language='en'):
+
+def split_with_llm(model_name, text, max_chars, language="en"):
     user_prompt = user_prompt_template.format(content=text, max_chars=max_chars)
     messages = [
         {"role": "system", "content": system_prompt_template},
@@ -72,14 +73,15 @@ def split_with_llm(model_name, text, max_chars, language='en'):
     response_text = completion(
         model=model_name,
         messages=messages,
-        max_tokens=4000, # hard coded for now
+        max_tokens=4000,  # hard coded for now
         response_format=LLMChunkSplitter,
     )
     json_res = response_text.choices[0].message.content
     parsed_res = json.loads(json_res)
     return parsed_res["chunks"]
 
-def split_by_natural_breakpoints(text, max_chars, language='en', model_name="gpt-4o-mini"):
+
+def split_by_natural_breakpoints(text, max_chars, language="en", model_name="gpt-4o-mini"):
     breakpoints = language_breakpoints.get(language, []) + [",", ";", ":"]
     words = text.split()
     chunks = []
@@ -121,7 +123,8 @@ def split_by_natural_breakpoints(text, max_chars, language='en', model_name="gpt
             final_chunks.append(c)
     return final_chunks
 
-def split_text_into_chunks(text, max_chars, language='en', model_name="gpt-4o-mini"):
+
+def split_text_into_chunks(text, max_chars, language="en", model_name="gpt-4o-mini"):
     # Split text into paragraphs
     paragraphs = text.strip().split("\n")
     all_chunks = []
@@ -140,11 +143,13 @@ def split_text_into_chunks(text, max_chars, language='en', model_name="gpt-4o-mi
 
     return all_chunks
 
+
 @st.cache_resource
 def load_tts_model():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     tts_model = TTS("xtts_v2.0.2").to(device)
     return tts_model
+
 
 def text_to_speech(
     text,
@@ -209,7 +214,7 @@ def text_to_speech(
     combined_audio = np.concatenate(audio_data)
 
     # Save the combined audio to the output file
-    if '/' in output_path:
+    if "/" in output_path:
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
     sf.write(output_path, combined_audio, samplerate=tts_model.synthesizer.output_sample_rate)
 
