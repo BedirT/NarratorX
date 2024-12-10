@@ -1,0 +1,6 @@
+Please split the following text into smaller chunks that do not exceed {max_chars} characters each. Ensure the chunks are logical, coherent, and split at natural breakpoints.
+
+Text to split:
+{content}
+
+Make sure the output is in the specified JSON format.

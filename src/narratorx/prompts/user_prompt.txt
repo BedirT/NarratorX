@@ -1,7 +1,17 @@
 Here is the text for proofreading:
-
 {content}
 
-Remember that you are not to change any of the text, you only need to fix the grammar, punctuation, and spelling mistakes. Also make sure the text is in simple txt format, no markdown or anything for formatting.
+Below is some detail that user provided about the text:
+Do the pages often have page numbers: {do_pages_have_page_numbers}
+Do the pages often have headers or footer content: {do_pages_have_headers_or_footers}
 
-Please return the fixed text in <fixed_text> tags.
+Make sure the text is in simple txt format, no markdown or anything for formatting.
+
+Return the answer in following json format:
+{{
+    thinking: str,
+    fixed_text: str,
+}}
+
+The thinking key should contain the thought process of how you fixed the text.
+The fixed_text key should contain the text after fixing it.

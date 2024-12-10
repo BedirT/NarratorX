@@ -61,7 +61,7 @@ def setup_logging(log_level, log_file=None):
 @click.argument("pdf_path", type=click.Path(exists=True))
 @click.option("--output", "-o", default="output.wav", help="Output audio file path.")
 @click.option("--language", "-l", default="en", help="Language code (e.g., en, tr).")
-@click.option("--model", "-m", default="gpt-4o-mini", help="LLM model name.")
+@click.option("--model", "-m", default="ollama/llama3.1", help="LLM model name.")
 @click.option("--max-characters-llm", default=1000, help="Maximum characters per LLM chunk.")
 @click.option("--max-tokens", default=4000, help="Maximum output tokens for the LLM call.")
 @click.option(
